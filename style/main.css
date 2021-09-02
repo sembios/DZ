@@ -1,59 +1,47 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
-.header {
-    display: flex;
-    justify-content: center;
+body {
+    margin: 0;
+}
+
+.grid-box {
+    height: 100vh;
+    background-color: #272727;
+    float: left;
+    width: 100%;
+    padding: 80px 15px;
 }
 
 .container {
-    width: 1200px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    max-width: 1170px;
+    margin: auto;
 }
 
-
-
-
-.citylist {
-    display: flex;
-    margin: 5px 5px 5px 5px;
-    width: 280px;
-    height: 100px;
-    border: 2px solid grey;
-
+.grid-box .content .box {
+    width: 33.33%;
+    float: left;
+    padding: 15px;
 }
 
-
-.title {
-    width: 75%;
+.grid-box .content .box .inner {
+    background-color: #404040;
+    padding: 90px 15px;
 
 }
 
-.title > p {
-    margin-left: 5px;
-}
-
-.photoimg {
-    margin: 5px 5px;
-      
-}
-
-.block {
+.grid-box .content .box .inner h1 {
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+    color: white;
     position: relative;
-    align-items: center;
-    width: 80px;
-    height: 50px;
-    border: 2px solid rgb(172, 160, 160);
-    overflow: hidden;
+    z-index: 10;
 }
-  
-.block > img {
-      
-    width: 100%;
-    height: auto;
-  }
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+

@@ -1,85 +1,58 @@
-// for (var i = 0; i < 1000000000; i++) {
-    
-// }
-// console.log(i);
+const allBox = document.querySelector('.content').children;
+const boxWidth = allBox[0].querySelector('.inner').offsetWidth;
+const boxHeight = allBox[0].querySelector('.inner').offsetHeight;
+const div = document.createElement('div')
+    div.style.position = 'absolute'
+    div.style.height = boxHeight + 'px';
+    div.style.width = boxWidth + 'px';
+    div.style.background = 'blue';
+    div.style.transition = '1s';
+    div.style.left = allBox[0].querySelector('.inner').offsetLeft + 'px';
+    div.style.top = allBox[0].querySelector('.inner').offsetTop + 'px';
+    document.querySelector('.grid-box').appendChild(div)
 
-// let i = 0;
-// const id = setInterval (() => {
-//     console.log(`Im count <i> - ${++i}`);
-// }, 1000);
+    for(i = 0; i < allBox.length; i++) {
+        allBox[i].querySelector('.inner').addEventListener('mousemove', function() {
+            const height = this.offsetHeight;
+            const width = this.offsetWidth;
+            const x = this.offsetLeft
+            const y = this.offsetTop
+            div.style.left = x + 'px';
+            div.style.top = y + 'px';
+            div.style.width = width + 'px';
+            div.style.height = height + 'px';
 
-// setTimeout (() => {
-//     clearInterval(id)
-// }, 5000);
-
-
-
-//promise
-// let age = 2
-// const newPromise = new Promise(function(resolve, rejec) {
-//   if (age > 19) {
-//     resolve({age, statBol: true, status: 200})
-//   } else {
-//     rejec({age, statBol: false, status: 400})
-//   }
-// })
-
-// newPromise
-//       .then(result => console.log(result)) //положительный ответ
-//       .catch(err => console.log(err)) //отрицательный. ошибка
-//       .finally(() => alert('d')) //в любом случае
+        })
+    }
 
 
 
-
-// let h = new XMLHttpRequest()
-// h.open ('GET', 'https://pokeapi.co/api/v2/pokemon/')
-// h.send()
-// h.onload = function () {
-//     console.log(JSON.parse(h.response));
-// }
-
-// const URL = 'https://pokeapi.co/api/v2/pokemon/'
-// fetch(URL)
-// .then(result => result.json())
-// .then(data => console.log(data))
-
-const City = document.querySelector('.container')
-
-const URL = 'https://restcountries.eu/rest/v2/all'
-fetch(URL)
-.then(result => result.json())
-.then(data => {
-    data.forEach((item) =>{
-        console.log(item);
-        City.innerHTML += `
-        <div class="citylist">
-        <div class="title">
-            <p>Страна:${item.name}</p>
-            <p>Столица:${item.capital}</p>
-            <p>Префикс:${item.alpha2Code}</p>
-            <p>Регион:${item.region}</p>
-        </div>
-        <div class="photoimg">
-        <div class="block">
-            <img src="${item.flag}" alt="">
-        </div>
-    </div>
-    </div>
-        `
-        console.log(item.name);
-    })
-
-    
-
-})
-
-
-
-
-
-
-
-
-
-
+//-----------------API
+function updateClock(){
+    var currentTime = new Date ();
+    var currentHours = currentTime.getHours ( );
+    var currentMinutes = currentTime.getMinutes ( );
+    var monthNames = [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ];
+    	currentTime.setDate(currentTime.getDate());    
+    	currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+    	currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+    	var currentTimeString = currentHours + ":" + currentMinutes;
+    $(".time-cont").html(currentTimeString); 
+    $('.date').html(currentTime.getDate() + ' ' + monthNames[currentTime.getMonth()]);
+}
+$.fn.togglePlaceholder = function(){
+    return this.each(function() {
+        $(this)
+        .data("holder", $(this).attr("placeholder"))
+        .focusin(function(){
+            $(this).attr('placeholder','');
+        })
+        .focusout(function(){
+            $(this).attr('placeholder',$(this).data('holder'));
+        });
+    });
+};
+$(document).ready(function(){
+	setInterval('updateClock()', 200);
+           
+});
